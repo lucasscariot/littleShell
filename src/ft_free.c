@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/27 22:26:11 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/27 22:10:39 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/27 22:16:29 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define FT_LS_H
+#include "minishell.h"
 
-# include "libft.h"
-
-typedef struct		s_env
+void	ft_free_one(t_env *var)
 {
-	char			*name;
-	char			*content;
-	struct s_env	*next;
-}					t_env;
+	free(var->name);
+	free(var->content);
+}
+void	ft_free_list(t_env *var)
+{
+	t_env	*next;
 
-int					ft_cmd(char *line, t_env *var);
-t_env				*ft_env(char **env);
-void				ft_show_env(t_env *var);
-
-void				ft_free_list(t_env *var);
-#endif
+	while (var != NULL)
+	{
+		next = var->next;
+		ft_free_one(var);
+		free(var);
+		var = next;
+	}
+}

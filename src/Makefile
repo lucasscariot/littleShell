@@ -6,7 +6,7 @@
 #    By: lscariot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/22 09:44:59 by lscariot          #+#    #+#              #
-#    Updated: 2016/02/27 16:57:13 by lscariot         ###   ########.fr        #
+#    Updated: 2016/02/27 22:15:54 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ I_DIR	=
 
 FLAGS	= -Wall -Wextra -Werror $(I_DIR) $(LIBS_DIR)
 
-FILES	= main.c \
+FILES	= main.c	ft_cmd.c	ft_env.c	ft_free.c
 
 LIBS_F	= ./libft/libft.a
 

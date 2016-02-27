@@ -3,55 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscariot <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/08 08:31:17 by lscariot          #+#    #+#             */
-/*   Updated: 2015/12/17 15:53:26 by lscariot         ###   ########.fr       */
+/*   Created: 2016/02/27 22:05:26 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/27 22:08:41 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_save(t_gnl *baboom, char **line)
+static int      occ_test(char **occ, char *save)
 {
-	while (baboom->read--)
+	if (*occ != NULL)
 	{
-		if (baboom->buff[baboom->ret] == '\n')
-		{
-			baboom->ret++;
-			return (1);
-		}
-		(*line)[baboom->i] = baboom->buff[baboom->ret++];
-		baboom->i++;
+		**occ = '\0';
+		*occ += 1;
+		ft_strcpy(save, *occ);
+		return (1);
 	}
-	return (0);
+	else
+		return (0);
 }
 
-int	get_next_line(int const fd, char **line)
+static char     *dyn_alloc(char **line, int *ret)
 {
-	static t_gnl	baboom;
-	char			*buff;
-	int				r;
+	char        *str;
 
-	baboom.i = 0;
-	*line = ft_memalloc(1000);
-	buff = ft_strnew(BUFF_SIZE + 1);
-	while (baboom.read > 0)
+	str = (char *)malloc(sizeof(char) * (ft_strlen(*line) + *ret + 1));
+	if (str == NULL)
+		return (NULL);
+	str = ft_strcpy(str, *line);
+	free(*line);
+	return (str);
+}
+
+int             get_next_line(int const fd, char **line)
+{
+	char        buf[BUFF_SIZE + 1];
+	int         ret;
+	static char save[BUFF_SIZE] = "";
+	char        *occ;
+
+	*line = (char *)malloc(sizeof(char *) * (BUFF_SIZE + ft_strlen(save) + 1));
+	*line = ft_strcpy(*line, save);
+	while (((occ = ft_strchr(*line, '\n')) == NULL)
+			&& ((ret = read(fd, buf, BUFF_SIZE)) > 0))
 	{
-		if (ft_save(&baboom, line))
-			return (1);
-	}
-	baboom.ret = 0;
-	while ((r = read(fd, buff, BUFF_SIZE)))
-	{
-		if (r == -1)
+		buf[ret] = '\0';
+		if ((*line = dyn_alloc(line, &ret)) == NULL)
 			return (-1);
-		baboom.buff = ft_strdup(buff);
-		baboom.read = r;
-		if (ft_save(&baboom, line))
-			return (1);
-		ft_strdel(&baboom.buff);
-		baboom.ret = 0;
+		ft_strcat(*line, buf);
 	}
-	return (0);
+	occ = ft_strchr(*line, '\n');
+
+	if (occ_test(&occ, save) == 1)
+		return (1);
+	if (ret == 0)
+		return (0);
+	else
+		return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/27 18:47:51 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/02/27 22:25:38 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 int		main(int ac, char **av, char **env)
 {
 	char	*line;
+	t_env	*var;
 
 	(void)av;
 	(void)ac;
-	(void)env;
+	var = ft_env(env);
 	while (42)
 	{
-		ft_putstr("lscariot");
-		ft_putstr(" $> ");
+		ft_putcolor("[Dieu]", YELLOW);
+		ft_putstr("$> ");
 		get_next_line(0, &line);
-		if (ft_strcmp(line, "exit") == 0)
+		if (ft_cmd(line, var))
 			break ;
-		if (ft_strlen(line))
-			ft_putendl(line);
 		free(line);
 	}
+	ft_free_list(var);
 	free(line);
+	return (0);
 }
