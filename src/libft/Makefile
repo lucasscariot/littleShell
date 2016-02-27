@@ -6,11 +6,11 @@
 #    By: lscariot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/26 07:58:18 by lscariot          #+#    #+#              #
-#    Updated: 2016/02/06 21:07:19 by lscariot         ###   ########.fr        #
+#    Updated: 2016/02/27 16:38:47 by lscariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= ../libft.a
+NAME 	= libft.a
 
 SRCS 	= ft_atoi.c			ft_bzero.c		ft_memcpy.c		ft_memccpy.c	\
 		  ft_memmove.c		ft_memchr.c		ft_strlen.c		ft_strdup.c		\
@@ -33,7 +33,7 @@ DIRSRC	= $(addprefix ./ ,$(SRCS))
 
 OBJS	= ${SRCS:%.c=.obj/%.o}
 
-INC		= ./
+INC		= ../includes
 
 FLAGS	= -Wall -Wextra -Werror -g
 

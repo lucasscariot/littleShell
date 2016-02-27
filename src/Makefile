@@ -6,11 +6,14 @@
 #    By: lscariot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/22 09:44:59 by lscariot          #+#    #+#              #
-#    Updated: 2016/02/27 16:54:42 by lscariot         ###   ########.fr        #
+#    Updated: 2016/02/27 16:57:13 by lscariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 NAME	= minishell
+
+LINK	= ../minishell
 
 CC		= clang
 
@@ -36,15 +39,26 @@ RM		= rm -f
 
 all: 		$(NAME)
 
-$(NAME):
-	@make -C src
+$(NAME): 	$(OBJS)
+	@echo ""
+	@make -C libft
+	@$(CC) $(FLAGS) -I./includes $(LIBS_F) $^ -o $(LINK)
+	@echo "\033[32m$(NAME) created.\033[0m"
+
+$(O_DIR)%.o:		$(S_DIR)%.c
+	@$(CC) $(FLAGS) -I./includes -c $< -o $@
+	@echo "\033[33m.\033[0m\c"
 
 clean:
-	@make -C src clean
+	@$(RM) $(OBJS)
+	@make -C libft clean
 
 fclean: 	clean
-	@make -C src fclean
+	@$(RM) $(LINK)
+	@make -C libft fclean
+	@echo "\033[31m$(NAME) cleaned.\033[0m"
 
 re:			fclean all
+	@make clean
 
 .PHONY: re clean fclean all
