@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/27 22:21:02 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 01:12:06 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_env	*ft_env(char **env)
 	var = NULL;
 	while (env[i])
 		var = ft_save_env(var, env[i++]);
+	ft_shlvl(var);
 	return (var);
 }
 

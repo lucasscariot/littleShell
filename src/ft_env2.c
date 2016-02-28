@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_env2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 01:49:57 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/28 01:49:44 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define FT_LS_H
+#include "minishell.h"
 
-# include "libft.h"
-
-typedef struct		s_env
+void	ft_shlvl(t_env *var)
 {
-	char			*name;
-	char			*content;
-	struct s_env	*next;
-}					t_env;
+	int tmp;
 
-int					ft_cmd(char *line, t_env *var);
-
-t_env				*ft_env(char **env);
-void				ft_show_env(t_env *var);
-void				ft_shlvl(t_env *var);
-void				ft_prompt(t_env *var);
-
-void				ft_free_list(t_env *var);
-#endif
+	while (var && ft_strcmp(var->name, "SHLVL=") != 0)
+		var = var->next;
+	if (!var || ft_strcmp(var->name, "SHLVL=") != 0)
+		return ;
+	tmp = ft_atoi(var->content);
+	free(var->content);
+	var->content = ft_itoa(tmp + 1);
+}

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 01:45:39 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/28 01:41:33 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/28 01:49:35 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		main(int ac, char **av, char **env)
+void	ft_pwdfolder(t_env *var)
 {
-	char	*line;
-	t_env	*var;
+	int	i;
 
-	(void)av;
-	(void)ac;
-	var = ft_env(env);
-	while (42)
-	{
-		ft_prompt(var);
-		get_next_line(0, &line);
-		if (ft_cmd(line, var))
-			break ;
-		free(line);
-	}
-	ft_free_list(var);
-	free(line);
-	return (0);
+	while (var != NULL && ft_strcmp(var->name, "PWD=") != 0)
+		var = var->next;
+	if (!var && ft_strcmp(var->name, "PWD=") != 0)
+		return ;
+	i = ft_strlen(var->content);
+	while (var->content[i] != '/')
+		i--;
+	ft_putcolor(&var->content[i + 1], YELLOW);
+	return ;
+}
+
+void	ft_prompt(t_env *var)
+{
+	ft_putcolor("[", YELLOW);
+	ft_pwdfolder(var);
+	ft_putcolor("]", YELLOW);
+	ft_putstr("$> ");
 }

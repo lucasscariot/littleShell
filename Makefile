@@ -6,7 +6,7 @@
 #    By: lscariot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/22 09:44:59 by lscariot          #+#    #+#              #
-#    Updated: 2016/02/27 16:54:42 by lscariot         ###   ########.fr        #
+#    Updated: 2016/02/28 01:29:45 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,5 +46,6 @@ fclean: 	clean
 	@make -C src fclean
 
 re:			fclean all
+	@make -C src clean
 
 .PHONY: re clean fclean all
