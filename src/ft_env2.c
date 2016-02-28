@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 11:14:13 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 17:05:08 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ void	ft_del_env(t_env *var, char *name)
 
 	if ((hoo = ft_search_var(var, name)) < 0 || !name)
 		return ;
+	if (hoo == 0)
+	{
+		ft_swap_list(var, var->next);
+		ft_del_env(var, name);
+		return ;
+	}
 	hoo--;
 	tmp = ft_strjoin(name, "=");
 	while (hoo--)

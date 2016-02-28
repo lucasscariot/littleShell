@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_swap_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 19:56:35 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/28 16:36:14 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/28 16:56:09 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		main(int ac, char **av, char **env)
+void	ft_swap_cpy(t_env *dest, t_env *src)
 {
-	char	*line;
-	char	**sep;
-	t_env	*var;
+	dest->name = ft_strdup(src->name);
+	dest->content = ft_strdup(src->content);
+}
 
-	(void)av;
-	(void)ac;
-	var = ft_env(env);
-	while (42)
-	{
-		ft_prompt(var);
-		get_next_line(0, &line);
-		sep = ft_strsplit(line, ' ');
-		if (ft_cmd(sep, var))
-			break ;
-		free(line);
-		ft_free_tab(sep);
-	}
-	free(line);
-	ft_free_tab(sep);
-	ft_free_list(var);
-	return (0);
+void	ft_swap_list(t_env *f, t_env *s)
+{
+	t_env	*tmp;
+
+	if (!f && !s)
+		return ;
+	tmp = (t_env*)malloc(sizeof(t_env));
+	ft_swap_cpy(tmp, s);
+	ft_free_one(s);
+	ft_swap_cpy(s, f);
+	ft_free_one(f);
+	ft_swap_cpy(f, tmp);
+	ft_free_one(tmp);
+	free(tmp);
 }

@@ -6,38 +6,34 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 12:06:43 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 20:24:13 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exec(char *cmd, char **opt, char **env)
+void	ft_exec(char *cmd, char **opt, t_env *var)
 {
+	char	*tmp;
+	char	*scm;
 	pid_t	proc;
 
-	(void)cmd;
+	scm = ft_strjoin("/", cmd);
+	tmp = ft_path(scm, var);
+	free(scm);
+	if (!tmp)
+	{
+		ft_error_cmd(cmd);
+		return ;
+	}
 	proc = fork();
 	if (proc == 0)
-		execve("/bin/ls", opt, env);
+		execve(tmp, opt, NULL);
 	wait(NULL);
+	free(tmp);
 }
 
-void	ft_change_directory(t_env *var)
-{
-	int		hoo;
-
-	if ((hoo = ft_search_var(var, "PWD")) < 0)
-		return ;
-	while (hoo--)
-		var = var->next;
-	free(var->content);
-	var->content = ft_strdup("/Users/lucas/42");
-	ft_putcolor(var->content, BLUE);
-	ft_putchar('\n');
-}
-
-int		ft_cmd(char	**line, t_env *var, char **test)
+int		ft_cmd(char	**line, t_env *var)
 {
 	int i;
 
@@ -51,10 +47,10 @@ int		ft_cmd(char	**line, t_env *var, char **test)
 	else if (ft_strcmp(line[0], "setenv") == 0)
 		var = ft_save_env(var, line[1]);
 	else if (ft_strcmp(line[0], "cd") == 0)
-		ft_change_directory(var);
-	else if (ft_strcmp(line[0], "ls") == 0)
-		ft_exec(line[0], line, test);
+		ft_change_directory(var, line[1]);
 	else if (ft_strcmp(line[0], "exit") == 0)
 		return (1);
+	else
+		ft_exec(line[0], line, var);
 	return (0);
 }

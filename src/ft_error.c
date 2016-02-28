@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 19:56:35 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/28 19:33:25 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/28 19:38:02 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		main(int ac, char **av, char **env)
+void	ft_error_cmd(char *cmd)
 {
-	char	*line;
-	char	**sep;
-	t_env	*var;
+	ft_putstr("minishell: command not found: ");
+	ft_putendl(cmd);
+}
 
-	(void)av;
-	(void)ac;
-	var = ft_env(env);
-	while (42)
-	{
-		ft_prompt(var);
-		get_next_line(0, &line);
-		sep = ft_strsplit(line, ' ');
-		if (ft_cmd(sep, var))
-			break ;
-		free(line);
-		ft_free_tab(sep);
-	}
-	free(line);
-	ft_free_tab(sep);
-	ft_free_list(var);
-	return (0);
+void	ft_error_cd(char *path)
+{
+	ft_putstr("cd: no such file or directory: ");
+	ft_putendl(path);
 }

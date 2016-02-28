@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isfile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 19:56:35 by lucas            ###   ########.fr       */
+/*   Created: 2016/02/28 16:25:32 by lucas             #+#    #+#             */
+/*   Updated: 2016/02/28 16:26:10 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		main(int ac, char **av, char **env)
+int		ft_isfile(char *filename)
 {
-	char	*line;
-	char	**sep;
-	t_env	*var;
+	struct stat state;
 
-	(void)av;
-	(void)ac;
-	var = ft_env(env);
-	while (42)
-	{
-		ft_prompt(var);
-		get_next_line(0, &line);
-		sep = ft_strsplit(line, ' ');
-		if (ft_cmd(sep, var))
-			break ;
-		free(line);
-		ft_free_tab(sep);
-	}
-	free(line);
-	ft_free_tab(sep);
-	ft_free_list(var);
-	return (0);
+	if (lstat(filename, &state) == -1)
+		return (0);
+	return (1);
 }
