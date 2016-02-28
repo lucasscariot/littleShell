@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 01:12:06 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 11:39:25 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,26 @@ char	**ft_separate(char *put)
 	int		full;
 	int		cont;
 	char	**sep;
+	int		i;
 
+	full = 0;
+	i = 0;
 	if (!put)
 		return (NULL);
-	sep = (char **)malloc(sizeof(sep) * 2);
+	while (put[i])
+	{
+		if (put[i] == '=')
+			full++;
+		i++;
+	}
+	if (full != 1)
+		return (NULL);
+	sep = (char **)malloc(sizeof(sep) * 3);
 	full = ft_strlen(put);
 	cont = ft_strlen(ft_strchr(put, '=')) - 1;
 	sep[0] = ft_strndup(put, full - cont);
 	sep[1] = ft_strdup(&put[full - cont]);
+	sep[2] = NULL;
 	return (sep);
 }
 
@@ -35,14 +47,14 @@ t_env	*ft_save_env(t_env *var, char *put)
 	char	**sep;
 
 	new = malloc(sizeof(t_env));
-	sep = ft_separate(put);
 	if (!new)
 		return (NULL);
+	sep = ft_separate(put);
+	if (!sep)
+		return (var);
 	new->name = ft_strdup(sep[0]);
 	new->content = ft_strdup(sep[1]);
-	free(sep[0]);
-	free(sep[1]);
-	free(sep);
+	ft_free_tab(sep);
 	new->next = NULL;
 	if (!var)
 		return (new);
@@ -74,7 +86,7 @@ void	ft_show_env(t_env *var)
 {
 	while (var != NULL)
 	{
-		ft_putstr(var->name);
+		ft_putcolor(var->name, GREEN);
 		ft_putendl(var->content);
 		var = var->next;
 	}

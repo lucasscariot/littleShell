@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 22:10:39 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/27 22:16:29 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 11:35:28 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ void	ft_free_list(t_env *var)
 		free(var);
 		var = next;
 	}
+}
+
+void	ft_free_tab(char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
