@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:41:33 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 11:07:26 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 23:05:00 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ void	ft_pwdfolder(t_env *var)
 	int		i;
 	int		hoo;
 
-	if ((hoo = ft_search_var(var, "PWD")) < 0)
+	hoo = ft_search_var(var, "PWD");
+	while (hoo--)
+		var = var->next;
+	i = ft_strlen(var->content);
+	while (var->content[i] != '/' && i--)
+		i--;
+	if (!i)
 	{
 		ft_putcolor("unknow", RED);
 		return ;
 	}
-	while (hoo--)
-		var = var->next;
-	if (!var && ft_strcmp(var->name, "PWD=") != 0)
-		return ;
-	i = ft_strlen(var->content);
-	while (var->content[i] != '/')
-		i--;
 	ft_putcolor(&var->content[i + 1], YELLOW);
 	return ;
 }

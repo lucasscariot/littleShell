@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 17:05:08 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/28 22:41:48 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ void	ft_shlvl(t_env *var)
 	tmp = ft_atoi(var->content);
 	free(var->content);
 	var->content = ft_itoa(tmp + 1);
+}
+
+char	*ft_search_content(t_env *var, char *name)
+{
+	char    *tmp;
+
+	if (!name)
+		return (NULL);
+	tmp = ft_strjoin(name, "=");
+	while (var && ft_strcmp(var->name, tmp) !=0)
+		var = var->next;
+	free(tmp);
+	if (!var)
+		return (NULL);
+	return (var->content);
 }
 
 int		ft_search_var(t_env *var, char *name)
