@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 20:17:16 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 22:55:30 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/29 11:14:27 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	ft_change_directory(t_env *var, char *path)
 	}
 	if (chdir(path) == -1)
 		ft_error_cd(path);
-	ft_pwd(var, path);
-	ft_oldpwd(var);
+	else
+	{
+		ft_pwd(var, path);
+		ft_oldpwd(var);
+	}
 }

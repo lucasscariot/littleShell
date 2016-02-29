@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 17:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 19:51:21 by lucas            ###   ########.fr       */
+/*   Updated: 2016/02/29 11:15:43 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ char	*ft_path(char *cmd, t_env *var)
 		i++;
 	}
 	ft_free_tab(tmp);
+	if (!der && ft_isfile(cmd))
+		return (cmd);
 	return (NULL);
 }
