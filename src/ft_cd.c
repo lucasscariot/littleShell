@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 20:17:16 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/29 11:14:27 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/01 20:59:36 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_pwd(t_env *var, char *path)
 {
 	int     hoo;
 
+	(void)path;
 	if ((hoo = ft_search_var(var, "PWD")) < 0)
 		return ;
 	while (hoo--)
@@ -38,7 +39,7 @@ void	ft_oldpwd(t_env *var)
 	while (hoo--)
 		var = var->next;
 	while (hoo2--)
-		var = var->next;
+		pwd = pwd->next;
 	free(var->content);
 	var->content = ft_strdup(pwd->content);
 }
@@ -46,15 +47,14 @@ void	ft_oldpwd(t_env *var)
 void	ft_change_directory(t_env *var, char *path)
 {
 	if (ft_strcmp(path, "-") == 0)
-	{
-		free(path);
 		path = ft_strdup(ft_search_content(var, "OLDPWD"));
-	}
-	if (chdir(path) == -1)
+	if (ft_strcmp(path, "-") == 0)
+		ft_oldpwd(var);
+	else if (chdir(path) == -1)
 		ft_error_cd(path);
 	else
 	{
-		ft_pwd(var, path);
 		ft_oldpwd(var);
+		ft_pwd(var, path);
 	}
 }

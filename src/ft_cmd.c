@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 20:24:13 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/01 22:15:04 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void	ft_exec(char *cmd, char **opt, t_env *var)
 {
 	char	*tmp;
-	char	*scm;
+	char	**conv;
 	pid_t	proc;
 
-	scm = ft_strjoin("/", cmd);
-	tmp = ft_path(scm, var);
-	free(scm);
+	tmp = ft_path(cmd, var);
 	if (!tmp)
 	{
 		ft_error_cmd(cmd);
@@ -28,7 +26,11 @@ void	ft_exec(char *cmd, char **opt, t_env *var)
 	}
 	proc = fork();
 	if (proc == 0)
-		execve(tmp, opt, NULL);
+	{
+		conv = ft_conv_env(var);
+		ft_putnbr(execve(tmp, opt, conv));
+		ft_free_tab(conv);
+	}
 	wait(NULL);
 	free(tmp);
 }

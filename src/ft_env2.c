@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 22:41:48 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/01 22:16:45 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,28 @@ void	ft_del_env(t_env *var, char *name)
 	ft_free_one(save);
 	free(save);
 	free(tmp);
+}
+
+char	**ft_conv_env(t_env *var)
+{
+	t_env	*tmp;
+	char	**conv;
+	int		i;
+
+	i = 0;
+	tmp = var;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	conv = malloc(sizeof(conv) * i + 1);
+	i = 0;
+	while (var != NULL)
+	{
+		conv[i++] = ft_strjoin(var->name, var->content);
+		var = var->next;
+	}
+	conv[i] = NULL;
+	return (conv);
 }

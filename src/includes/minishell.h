@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 22:42:47 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/01 21:56:19 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void				ft_swap_list(t_env *f, t_env *s);
 char				*ft_path(char *cmd, t_env *var);
 void				ft_error_cmd(char *cmd);
 void				ft_error_cd(char *path);
+char				**ft_conv_env(t_env *var);
 
 #endif
