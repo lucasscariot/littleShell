@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 15:33:38 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 17:26:46 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void	ft_del_env(t_env *var, char *name)
 		var = var->next;
 	if (!var || ft_strcmp(var->next->name, tmp) != 0)
 		return ;
-	ft_putstr(var->next->name);
-	ft_putendl(var->next->content);
 	save = var->next;
 	var->next = var->next->next;
 	ft_free_one(save);

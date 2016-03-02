@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 15:34:21 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 17:27:21 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_show_env(t_env *var)
 {
 	while (var != NULL)
 	{
-		ft_putcolor(var->name, GREEN);
+		ft_putstr(var->name);
 		ft_putendl(var->content);
 		var = var->next;
 	}
