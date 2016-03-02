@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 17:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 21:25:01 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 16:20:35 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*ft_path(char *cmd, t_env *var)
 {
 	char	**tmp;
 	char	*der;
-	int		hoo;
 	int		i;
 	char	*scm;
 
@@ -24,11 +23,7 @@ char	*ft_path(char *cmd, t_env *var)
 	if (ft_isfile(cmd))
 		return (ft_strdup(cmd));
 	scm = ft_strjoin("/", cmd);
-	if ((hoo = ft_search_var(var, "PATH")) < 0)
-		return (NULL);
-	while (hoo--)
-		var = var->next;
-	tmp = ft_strsplit(var->content, ':');
+	tmp = ft_strsplit(ft_search_content(var, "PATH"), ':');
 	while (tmp[i])
 	{
 		der = ft_strjoin(tmp[i], scm);

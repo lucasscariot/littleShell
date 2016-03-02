@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 11:39:25 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 15:34:21 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,26 @@ char	**ft_separate(char *put)
 	sep[1] = ft_strdup(&put[full - cont]);
 	sep[2] = NULL;
 	return (sep);
+}
+
+t_env	*ft_set_env(t_env *var, char *put)
+{
+	int		hoo;
+	char	**sep;
+
+	sep = ft_separate(put);
+	if ((hoo = ft_search_var(var, sep[0])) < 0)
+	{
+		ft_save_env(var, put);
+	}
+	else
+	{
+		while (hoo--)
+			var = var->next;
+		free(var->content);
+		var->content = ft_strdup(sep[1]);
+	}
+	return (var);
 }
 
 t_env	*ft_save_env(t_env *var, char *put)

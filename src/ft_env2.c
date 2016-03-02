@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 14:10:21 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 15:33:38 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int		ft_search_var(t_env *var, char *name)
 	i = 0;
 	if (!name)
 		return (-1);
-	tmp = ft_strjoin(name, "=");
+	if (name[ft_strlen(name) - 1] != '=')
+		tmp = ft_strjoin(name, "=");
+	else
+		tmp = ft_strdup(name);
 	while (var && ft_strcmp(var->name, tmp) != 0)
 	{
 		var = var->next;

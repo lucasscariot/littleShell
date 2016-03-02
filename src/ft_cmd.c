@@ -6,11 +6,20 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 14:09:24 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 16:21:00 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_get_absolute(void)
+{
+	char	buff[1000];
+	char	*link;
+
+	link = ft_strdup(getcwd(buff, 1000));
+	return (link);
+}
 
 void	ft_exec(char *cmd, char **opt, t_env *var)
 {
@@ -47,7 +56,7 @@ int		ft_cmd(char **line, t_env *var)
 	else if (ft_strcmp(line[0], "unsetenv") == 0)
 		ft_del_env(var, line[1]);
 	else if (ft_strcmp(line[0], "setenv") == 0)
-		var = ft_save_env(var, line[1]);
+		var = ft_set_env(var, line[1]);
 	else if (ft_strcmp(line[0], "cd") == 0)
 		ft_change_directory(var, line[1]);
 	else if (ft_strcmp(line[0], "exit") == 0)
@@ -55,4 +64,9 @@ int		ft_cmd(char **line, t_env *var)
 	else
 		ft_exec(line[0], line, var);
 	return (0);
+}
+
+void	ft_wtf(int i)
+{
+	(void)i;
 }

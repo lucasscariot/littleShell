@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 20:40:38 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 14:30:44 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int ac, char **av, char **env)
 	char	**sep;
 	t_env	*var;
 
+	signal(SIGINT, ft_wtf);
 	(void)av;
 	(void)ac;
 	var = ft_env(env);
