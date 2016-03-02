@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 17:08:46 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 18:18:42 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		main(int ac, char **av, char **env)
 		if (ft_cmd(sep, var))
 			break ;
 		free(line);
-		ft_free_tab(sep);
+		if (sep)
+			ft_free_tab(sep);
 		ft_prompt(var);
 	}
 	ft_strdel(&line);
