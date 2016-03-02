@@ -6,12 +6,12 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 15:23:32 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 16:44:00 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-# define FT_LS_H
+# define MINISHELL_H
 
 # include <sys/stat.h>
 # include <signal.h>
