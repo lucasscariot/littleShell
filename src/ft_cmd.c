@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 22:15:04 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 14:09:24 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_exec(char *cmd, char **opt, t_env *var)
 	free(tmp);
 }
 
-int		ft_cmd(char	**line, t_env *var)
+int		ft_cmd(char **line, t_env *var)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (!line[0])

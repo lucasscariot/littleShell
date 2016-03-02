@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 21:56:19 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 13:49:05 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void				ft_change_directory(t_env *var, char *path);
 void				ft_prompt(t_env *var);
 t_env				*ft_save_env(t_env *var, char *put);
 int					ft_search_var(t_env *var, char *name);
+char				*ft_ret_content(t_env *var, char *name);
 char				*ft_search_content(t_env *var, char *name);
 void				ft_free_tab(char **tab);
 void				ft_del_env(t_env *var, char *name);

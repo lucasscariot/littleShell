@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 22:16:45 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 14:10:21 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_shlvl(t_env *var)
 
 char	*ft_search_content(t_env *var, char *name)
 {
-	char    *tmp;
+	char	*tmp;
 
 	if (!name)
 		return (NULL);
 	tmp = ft_strjoin(name, "=");
-	while (var && ft_strcmp(var->name, tmp) !=0)
+	while (var && ft_strcmp(var->name, tmp) != 0)
 		var = var->next;
 	free(tmp);
 	if (!var)
@@ -43,13 +43,13 @@ char	*ft_search_content(t_env *var, char *name)
 int		ft_search_var(t_env *var, char *name)
 {
 	char	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (!name)
 		return (-1);
 	tmp = ft_strjoin(name, "=");
-	while (var && ft_strcmp(var->name, tmp) !=0)
+	while (var && ft_strcmp(var->name, tmp) != 0)
 	{
 		var = var->next;
 		i++;
