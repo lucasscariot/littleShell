@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 20:17:16 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/01 20:59:36 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/02 10:06:02 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	ft_pwd(t_env *var, char *path)
 {
 	int     hoo;
 
-	(void)path;
 	if ((hoo = ft_search_var(var, "PWD")) < 0)
 		return ;
 	while (hoo--)
 		var = var->next;
+	if (ft_strcmp(path, ".") == 0)
+		path = ft_strdup(var->content);
 	free(var->content);
 	var->content = ft_strdup(path);
 }
