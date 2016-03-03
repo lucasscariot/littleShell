@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 22:10:39 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 18:20:54 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/03 07:31:16 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while (tab[i] != NULL)
 	{
-		if (!tab[i])
-			free(tab[i]);
+		free(tab[i]);
 		i++;
 	}
+	free(tab);
 }

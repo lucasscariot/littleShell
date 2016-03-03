@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 16:21:00 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 20:29:30 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_exec(char *cmd, char **opt, t_env *var)
 	if (proc == 0)
 	{
 		conv = ft_conv_env(var);
-		ft_putnbr(execve(tmp, opt, conv));
+		execve(tmp, opt, conv);
 		ft_free_tab(conv);
 	}
 	wait(NULL);

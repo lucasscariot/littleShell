@@ -6,13 +6,13 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 20:17:16 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 18:59:19 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/03 07:25:36 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(t_env *var, char *path)
+void	ft_pwd(t_env *var)
 {
 	int		hoo;
 
@@ -20,8 +20,6 @@ void	ft_pwd(t_env *var, char *path)
 		return ;
 	while (hoo--)
 		var = var->next;
-	if (ft_strcmp(path, ".") == 0)
-		path = ft_strdup(var->content);
 	free(var->content);
 	var->content = ft_get_absolute();
 }
@@ -47,17 +45,21 @@ void	ft_oldpwd(t_env *var)
 
 void	ft_change_directory(t_env *var, char *path)
 {
+	char	*tmp;
 	if (!path)
-		path = ft_strdup(ft_search_content(var, "HOME"));
+		tmp = ft_strdup(ft_search_content(var, "HOME"));
 	else if (ft_strcmp(path, "-") == 0)
-		path = ft_strdup(ft_search_content(var, "OLDPWD"));
-	else if (!path || ft_strcmp(path, "~") == 0)
-		path = ft_strdup(ft_search_content(var, "HOME"));
-	if (chdir(path) == -1)
-		ft_error_cd(path);
+		tmp = ft_strdup(ft_search_content(var, "OLDPWD"));
+	else if (ft_strcmp(path, "~") == 0 || ft_strcmp(path, "--") == 0)
+		tmp = ft_strdup(ft_search_content(var, "HOME"));
+	else
+		tmp = ft_strdup(path);
+	if (chdir(tmp) == -1)
+		ft_error_cd(tmp);
 	else
 	{
 		ft_oldpwd(var);
-		ft_pwd(var, path);
+		ft_pwd(var);
+		free(tmp);
 	}
 }

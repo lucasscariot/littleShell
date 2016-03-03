@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:06:55 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 17:26:46 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/02 22:09:45 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**ft_conv_env(t_env *var)
 		tmp = tmp->next;
 		i++;
 	}
-	conv = malloc(sizeof(conv) * i + 1);
+	conv = malloc(sizeof(conv) * (i + 1));
 	i = 0;
 	while (var != NULL)
 	{
