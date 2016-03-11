@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 17:27:21 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:41:43 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,11 @@
 
 char	**ft_separate(char *put)
 {
-	int		full;
-	int		cont;
 	char	**sep;
-	int		i;
 
-	full = 0;
-	i = 0;
-	if (!put)
+	sep = ft_strsplit(put, '=');
+	if (!sep[1] || !sep[0])
 		return (NULL);
-	while (put[i])
-	{
-		if (put[i] == '=')
-			full++;
-		i++;
-	}
-	if (full != 1)
-		return (NULL);
-	sep = (char **)malloc(sizeof(sep) * 3);
-	full = ft_strlen(put);
-	cont = ft_strlen(ft_strchr(put, '=')) - 1;
-	sep[0] = ft_strndup(put, full - cont);
-	sep[1] = ft_strdup(&put[full - cont]);
-	sep[2] = NULL;
 	return (sep);
 }
 
@@ -46,6 +28,8 @@ t_env	*ft_set_env(t_env *var, char *put)
 	char	**sep;
 
 	sep = ft_separate(put);
+	if (!sep)
+		return (var);
 	if ((hoo = ft_search_var(var, sep[0])) < 0)
 	{
 		ft_save_env(var, put);
@@ -72,7 +56,7 @@ t_env	*ft_save_env(t_env *var, char *put)
 	sep = ft_separate(put);
 	if (!sep)
 		return (var);
-	new->name = ft_strdup(sep[0]);
+	new->name = ft_strjoin(sep[0], "=");
 	new->content = ft_strdup(sep[1]);
 	ft_free_tab(sep);
 	new->next = NULL;

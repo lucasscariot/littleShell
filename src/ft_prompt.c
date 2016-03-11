@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:41:33 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 16:31:46 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:34:23 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_logname(t_env *var)
 
 void	ft_pwdfolder(t_env *var)
 {
+	char	**files;
 	int		hoo;
 
 	if ((hoo = ft_search_var(var, "PWD")) < 0)
@@ -38,7 +39,11 @@ void	ft_pwdfolder(t_env *var)
 	}
 	while (hoo--)
 		var = var->next;
-	ft_putcolor(var->content, YELLOW);
+	hoo = 0;
+	files = ft_strsplit(var->content, '/');
+	while (files[hoo + 1])
+		hoo++;
+	ft_putcolor(files[hoo], YELLOW);
 	return ;
 }
 
