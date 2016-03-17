@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 01:41:33 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/17 22:20:55 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/17 22:24:30 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_pwdfolder(t_env *var)
 		ft_putcolor("/", YELLOW);
 		return ;
 	}
-
 	files = ft_strsplit(var->content, '/');
 	while (files[hoo + 1])
 		hoo++;
