@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 20:29:30 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/21 16:19:01 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	ft_exec(char *cmd, char **opt, t_env *var)
 	char	**conv;
 	pid_t	proc;
 
-	tmp = ft_path(cmd, var);
+	if (ft_isfile(cmd))
+		tmp = ft_strdup(cmd);
+	else
+		tmp = ft_path(cmd, var);
 	if (!tmp)
 	{
 		ft_error_cmd(cmd);

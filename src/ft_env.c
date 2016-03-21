@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:54:49 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/11 16:41:43 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/21 14:06:29 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ t_env	*ft_set_env(t_env *var, char *put)
 	int		hoo;
 	char	**sep;
 
+	if (!put)
+		return (var);
 	sep = ft_separate(put);
-	if (!sep)
+	if (!sep || !put)
 		return (var);
 	if ((hoo = ft_search_var(var, sep[0])) < 0)
 	{

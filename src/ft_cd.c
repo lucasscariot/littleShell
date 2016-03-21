@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 20:17:16 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/03 07:25:36 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/03 11:02:56 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_oldpwd(t_env *var)
 void	ft_change_directory(t_env *var, char *path)
 {
 	char	*tmp;
+
 	if (!path)
 		tmp = ft_strdup(ft_search_content(var, "HOME"));
 	else if (ft_strcmp(path, "-") == 0)

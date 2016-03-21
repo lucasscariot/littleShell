@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 17:43:29 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 22:21:52 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/14 14:09:53 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*ft_path(char *cmd, t_env *var)
 	char	*scm;
 
 	i = 0;
-	if (ft_isfile(cmd))
-		return (ft_strdup(cmd));
 	scm = ft_strjoin("/", cmd);
 	tmp = ft_strsplit(ft_search_content(var, "PATH"), ':');
 	if (!tmp)
