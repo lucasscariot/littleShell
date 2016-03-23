@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 20:31:23 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/23 12:23:06 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/23 15:42:12 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_cmd(char **line, t_env *var)
 	int		i;
 
 	i = 0;
-	if (!line[0])
+	if (!line || !line[0])
 		return (0);
 	else if (ft_strcmp(line[0], "env") == 0)
 		ft_show_env(var);

@@ -6,11 +6,36 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 19:33:25 by lucas             #+#    #+#             */
-/*   Updated: 2016/02/28 19:38:02 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/23 16:57:38 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**ft_split(char	*s, int f)
+{
+	char	**tab;
+	char	**esp;
+	char	**res;
+	int		i;
+	int		j;
+
+	i = 0;
+	f = 0;
+	tab = ft_strsplit(s, '\t');
+	res = malloc(sizeof(char*) * 15);
+	while (tab[i])
+	{
+		esp = ft_strsplit(s, ' ');
+		j = 0;
+		while (esp[j])
+			res[f++] = ft_strtrim(esp[j++]);
+		i++;
+	}
+	res[f] = NULL;
+	ft_free_tab(tab);
+	return (res);
+}
 
 void	ft_error_cmd(char *cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/02 16:44:00 by lscariot         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:48:06 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void				ft_error_cmd(char *cmd);
 void				ft_error_cd(char *path);
 char				**ft_conv_env(t_env *var);
 char				*ft_get_absolute(void);
+char				**ft_split(char *s, int f);
 
 #endif
