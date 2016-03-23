@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:58 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/03 07:33:42 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/23 12:22:33 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		main(int ac, char **av, char **env)
 {
 	char	*line;
 	char	**sep;
+	char	**test;
 	t_env	*var;
 
 	(void)av;
@@ -25,7 +26,8 @@ int		main(int ac, char **av, char **env)
 	ft_prompt(var);
 	while (get_next_line(0, &line) > 0)
 	{
-		sep = ft_strsplit(line, ' ');
+		test = ft_strsplit(line, '\t');
+		sep = ft_strsplit(test[0], ' ');
 		free(line);
 		if (ft_cmd(sep, var))
 			break ;
