@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 21:31:41 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/24 00:13:28 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/24 14:53:26 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,3 @@ char				*ft_get_absolute(void);
 char				**ft_split(char *s, int f);
 
 #endif
-
-
-
-

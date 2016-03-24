@@ -6,13 +6,13 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 19:33:25 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/24 10:33:41 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/24 14:54:05 by lscariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_split(char	*s, int f)
+char	**ft_split(char *s, int f)
 {
 	char	**tab;
 	char	**esp;
