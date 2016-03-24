@@ -6,7 +6,7 @@
 /*   By: lucas <lscariot@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 19:33:25 by lucas             #+#    #+#             */
-/*   Updated: 2016/03/23 16:57:38 by lucas            ###   ########.fr       */
+/*   Updated: 2016/03/24 10:33:41 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ char	**ft_split(char	*s, int f)
 	res = malloc(sizeof(char*) * 15);
 	while (tab[i])
 	{
-		esp = ft_strsplit(s, ' ');
+		esp = ft_strsplit(tab[i], ' ');
 		j = 0;
 		while (esp[j])
 			res[f++] = ft_strtrim(esp[j++]);
+		ft_free_tab(esp);
 		i++;
 	}
 	res[f] = NULL;
